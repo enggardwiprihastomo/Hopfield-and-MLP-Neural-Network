@@ -1,7 +1,7 @@
 # Hopfield and MLP Neural Network
 ![snapshot](https://github.com/enggardwiprihastomo/Hopfield-and-MLP-Neural-Network/blob/master/snapshots.png)
 
-These 2 projects are made in order to pass Neural Networks subject at Politechnika Warszawska.
+These 2 projects were made in order to pass Neural Networks subject at Politechnika Warszawska.
 
 # Hopfield Neural Network
 The project was made dynamic, where user can create different patterns or load pre-existed pattern to the system. The results show that hopfield network can optimally converge the test pattern to one of the training patterns very well.
