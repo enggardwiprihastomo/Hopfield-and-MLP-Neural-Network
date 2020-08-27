@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hopfield Associated Memory</title>
+    <link rel="icon" href="img/networks.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="input">
+            Dimension
+            <input type="text" class="dimension" placeholder="0" onkeypress="return UIController.isNumber(event)">
+            x
+            <input type="text" class="dimension" placeholder="0" onkeypress="return UIController.isNumber(event)">
+        </div>
+        <div class="btn-ok">OK</div>
+        <div class="btn-reset">RESET</div>
+        <div class="btn-load">
+            <label>
+                <input type="file" accept=".txt" name="vector" class="vectorFile">
+            </label>
+        </div>
+    </div>
+    <div class="wrapper"></div>
+    <div class="pattern">
+        <div class="training"></div>
+        <div class="test"></div>
+    </div>
+</body>
+</html>
+<script src="js/NetController.js"></script>
+<script src="js/UIController.js"></script>
+<script src="js/MainController.js"></script>

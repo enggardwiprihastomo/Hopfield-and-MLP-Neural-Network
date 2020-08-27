@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multi-layer Perceptron</title>
+    <link rel="icon" href="img/networks.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="popupwrapper">
+        <div class="trainingwrapper">
+            <div class="upperdata">
+                <div class="datatitlewrapper">
+                    <div class="datatitle">NETWORK</div>
+                    <div class="datatitlestyle">
+                        <div class="titleblue"></div>
+                        <div class="titlegreen"></div>
+                        <div class="titleyellow"></div>
+                    </div>
+                </div>
+                <div class="inputcontent">
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Error threshold</div>
+                        <div class="inputfield">
+                            <input type="text" name="errorThreshold" class="errorThreshold" value="0">
+                        </div>
+                    </div>
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Learning rate</div>
+                        <div class="inputfield">
+                            <input type="text" name="learningrate"  class="learningrate" value="0">
+                        </div>
+                    </div>
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Training set</div>
+                        <div class="inputfield">
+                            <div class="btn-load"><label><input type="file" accept=".data" name="trainingset"></label></div>
+                            <input type="text" name="trainingset" readonly class="trainingset" value="NO TRAINING SET SELECTED">
+                        </div>
+                    </div>
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Validation set</div>
+                        <div class="inputfield">
+                            <div class="btn-val"><label><input type="file" accept=".val" name="valset"></label></div>
+                            <input type="text" name="valset" readonly class="valset" value="NO VALIDATION SET SELECTED">
+                        </div>
+                    </div>
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Hidden layer</div>
+                    </div>
+                    <div class="inputwrapper">
+                        <div class="inputlabel">
+                            <div class="btn-add"></div>
+                            Number of neuron
+                        </div>
+                        <div class="inputfield">
+                            <div class="wrapperdelete">
+                                <div class="btn-showdelete"></div>
+                            </div>
+                            <input type="text" name="hiddenneuron" class="hiddenneuronfield" value="0" onkeyup="generateHiddenLayer()" id="0">
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="lowerdata">
+                <div class="diagramsection">
+                    <div class="diagramwrapper">
+                        <div class="inputlayerwrapper">
+                            <div class="inputneuron"></div>
+                            <div class="inputneuron"></div>
+                        </div>
+                        <div class="hiddensection"></div>
+                        <div class="outputwrapper"></div>
+                    </div>
+                </div>
+                <div class="netinformation">
+                    <div class="inputinfo"></div>
+                    <div class="hiddeninfo"></div>
+                    <div class="outputinfo"></div>
+                    <div class="datainfo"></div>
+                </div>
+                <div class="btn-process">
+                    <img src="img/btn-ok.png">
+                </div>
+                <div class="btn-reset">
+                    <img src="img/btn-reset.png">
+                </div>
+            </div>
+        </div>
+        <div class="testwrapper">
+            <div class="upperdatatest">
+                <div class="datatitlewrapper">
+                    <div class="datatitle">TEST NETWORK</div>
+                    <div class="datatitlestyle">
+                        <div class="titleblue"></div>
+                        <div class="titlegreen"></div>
+                        <div class="titleyellow"></div>
+                    </div>
+                </div>
+                <div class="inputcontenttest">
+                    <div class="inputwrapper">
+                        <div class="inputlabel">Test set</div>
+                        <div class="inputfield">
+                            <div class="btn-loadtest"><label><input type="file" accept=".test" name="testset"></label></div>
+                            <input type="text" name="testset" readonly class="testset" value="NO TEST SET SELECTED">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-processtest">
+                    <img src="img/btn-ok.png">
+                </div>
+            </div>
+        </div>
+        <div class="processingstate">
+            <div class="processingdots">
+                <div class="blue"></div><div class="green"></div><div class="yellow"></div><div class="grey"></div>
+            </div>
+            <div class="processingdesc">
+                Please wait, training process is running
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        MULTI LAYER PERCEPTRON
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <div class="menuwrapper" id="Training">
+                <div class="menu">
+                    <div class="menuimage">
+                        <img src="img/training.png">
+                    </div>
+                    <div class="menudesc">
+                        Training
+                    </div>
+                </div>
+            </div>
+            <div class="menuwrapper" id="Test">
+                <div class="menu">
+                    <div class="menuimage">
+                        <img src="img/test.png">
+                    </div>
+                    <div class="menudesc">
+                        Testing
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="curve">
+            <div class="nocurvewrapper">
+                <div class="nocurveimage">
+                    <img src="img/nocurve.png">
+                </div>
+                <div class="nocurvedesc">
+                    No data to display in the graph
+                </div>
+            </div>
+        </div>
+        <div class="resultbar">
+            <div class="resultwrapper">
+                <div class="resulticon">
+                    <img src="img/result.png">
+                </div>
+                <div class="resultdetail">
+                    <div class="resultlabel">
+                        Number of epoch
+                    </div>
+                    :
+                    <div class="resultdata" id="epoch"></div>
+                </div>
+                <div class="resultdetail">
+                    <div class="resultlabel">
+                        Last error
+                    </div>
+                    :
+                    <div class="resultdata" id="error"></div>
+                </div>
+                <div class="resultdetail">
+                    <div class="resultlabel">
+                        Weight/Bias
+                    </div>
+                    :
+                    <div class="resultdata" id="wb"></div>
+                </div>
+                <div class="resultdetail">
+                    <div class="resultlabel">
+                        Computational time
+                    </div>
+                    :
+                    <div class="resultdata" id="time"></div>
+                </div>
+            </div>
+            <div class="noresult">
+                <div class="noresultimage">
+                    <img src="img/result.png">
+                </div>
+                <div class="noresultdesc">
+                    No result to display
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="messagesection"></div>
+</body>
+</html>
+<script src="js/Chart.js"></script>
+<script src="js/NetController.js"></script>
+<script src="js/TestController.js"></script>
+<script src="js/UIController.js"></script>
+<script src="js/MainController.js"></script>
